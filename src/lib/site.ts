@@ -5,7 +5,7 @@ export const siteConfig = {
   title: "Rohit Gurnani — AI Engineer & Software Developer",
   description:
     "AI Engineer and Software Developer building thoughtful products at the intersection of machine learning, developer tools, and human-centered design.",
-  url: "https://rohitgurnani.dev",
+  url: "https://rohit-gurnani-portfolio.vercel.app",
   email: "rohitgurnani233@gmail.com",
   phone: "+1 (864) 478-3053",
   github: "https://github.com/rohitgurnani1",
