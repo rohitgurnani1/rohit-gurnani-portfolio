@@ -1,0 +1,38 @@
+---
+title: "What Production Engineering Taught Me About Craft"
+description: "Lessons from Nordstrom that still shape how I design interfaces, APIs, and AI systems today."
+date: "2025-09-03"
+category: "Engineering"
+tags: ["Product", "Performance", "Career"]
+published: true
+---
+
+Before graduate school, I spent four years at Nordstrom shipping software used by millions of customers. It was the kind of environment that teaches you quickly: performance regressions become incidents, small UI bugs become brand moments, and "we'll fix it later" rarely stays later.
+
+## Details are the product
+
+At retail scale, polish isn't decorative — it's trust. A cart that hesitates, a search result that flickers, a checkout step that feels ambiguous: each one erodes confidence.
+
+That mindset now shows up in everything I build, including AI tools. Users don't care that your RAG pipeline is clever if the interface feels sluggish or unclear.
+
+## Reliability is a design constraint
+
+One of the most valuable habits I picked up was treating reliability as a creative constraint rather than a backend concern. When you know a feature must survive peak traffic, you design simpler flows and clearer failure states up front.
+
+That translates directly to AI products:
+
+- Stream responses when possible
+- Preserve partial results on failure
+- Make uncertainty visible instead of hallucinating confidence
+
+## Mentorship compounds
+
+Moving from Engineer I to Engineer II meant less typing and more thinking — reviewing designs, unblocking teammates, and helping juniors avoid the mistakes I'd already made.
+
+I still think the best teams optimize for **clarity over cleverness**. The code you can explain in one sentence usually survives longer than the code that impresses in a PR comment.
+
+## Carrying it forward
+
+Grad school opened a new axis — models, research papers, experiments — but the Nordstrom years grounded me in what actually matters when software leaves your laptop.
+
+Build things that are fast, honest, and maintainable. Everything else is decoration.

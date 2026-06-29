@@ -1,0 +1,46 @@
+---
+title: "Designing Guardrails for Real LLM Products"
+description: "What I learned building PromptGuard — and why safety layers should feel like developer tools, not compliance checkboxes."
+date: "2025-11-12"
+category: "AI Engineering"
+tags: ["LLMs", "Security", "Developer Tools"]
+published: true
+---
+
+Shipping an AI feature is easy. Shipping one you trust in production is harder.
+
+When I started building **PromptGuard**, I wasn't trying to solve prompt injection in the abstract. I was trying to solve the moment every team eventually hits: you have a working prototype, users are excited, and then someone pastes a jailbreak into your chat box.
+
+## Start with the developer experience
+
+The first version of PromptGuard was technically correct and practically annoying. It blocked unsafe prompts, but it also blocked iteration. Engineers stopped using it because it felt like friction.
+
+The breakthrough came when I reframed guardrails as **observability for intent**:
+
+- Log what was flagged and why
+- Make policies editable without redeploying the app
+- Return structured errors the UI can actually show users
+
+Good safety tooling should feel like Raycast or Linear — fast, obvious, and respectful of your flow.
+
+## Policy beats pattern matching
+
+Regular expressions can catch obvious attacks, but they fail on subtle social engineering. The system became much more useful when I combined:
+
+1. Lightweight heuristics for known injection shapes
+2. A scoring layer for ambiguous cases
+3. Human-readable policy definitions per product surface
+
+That mix keeps latency low while leaving room for nuance.
+
+## What I'd tell teams shipping now
+
+If you're adding AI to an existing product, don't treat safety as a launch-week patch. Design it alongside your API surface:
+
+- Define allowed and disallowed behaviors per route
+- Test adversarial prompts the way you'd test auth edge cases
+- Instrument everything — you'll learn more from near-misses than hard blocks
+
+PromptGuard is still evolving, but the goal hasn't changed: **make responsible AI feel effortless to build**.
+
+If you're working on something similar, I'd love to compare notes.

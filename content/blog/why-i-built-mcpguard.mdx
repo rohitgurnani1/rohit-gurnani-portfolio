@@ -1,0 +1,71 @@
+---
+title: "Why I Built MCPGuard"
+description: "Agents are getting tool access. Most demos skip what happens when those tools go wrong — MCPGuard is my answer."
+date: "2026-05-14"
+category: "AI Engineering"
+tags: ["MCP", "Agent Security", "LLMs", "Open Source"]
+published: true
+---
+
+The first time I watched an AI agent propose `read_file(".env")` in a demo, the room applauded. I felt something else: **this is going to go badly in production**.
+
+Tool-calling agents are the future of AI software — and the present, if you're building with MCP, LangChain, or Cursor-style agent modes. But most tutorials stop at "look, it can call APIs." They skip the harder question: **who authorizes those calls, and what happens when the model is wrong or malicious?**
+
+That's why I built [MCPGuard](https://github.com/rohitgurnani1/mcpguard).
+
+## The gap I kept seeing
+
+Prompt injection got attention first — and rightly so. But there's a second class of risk that's easier to ignore until you're shipping:
+
+An agent doesn't just *say* bad things. It can *do* bad things.
+
+- Read sensitive files
+- Run destructive shell commands
+- Send email to the wrong recipient
+- Dump database tables
+
+In a demo, these are features. In production, they're incidents waiting for a creative user — or a creative attacker.
+
+Working on **PromptGuard** taught me to think adversarially about LLM inputs. Building agent workflows made me realize **outputs aren't the only attack surface anymore**. The tool layer is.
+
+## What MCPGuard actually does
+
+MCPGuard sits between an agent and the tools it wants to call. Before execution, it:
+
+1. Inspects the proposed tool + arguments
+2. Evaluates them against **YAML policy rules**
+3. Assigns a **risk score (0–100)**
+4. Returns **allow**, **block**, or **approval_required**
+5. Logs everything to an **audit trail**
+
+For high-risk actions — like sending email — it supports **human-in-the-loop approval** instead of blind automation.
+
+It's not trying to be a full enterprise security platform. It's a **resume-grade, demo-ready firewall** that shows how agent security should feel: explicit, inspectable, and debuggable.
+
+## Design choices I'm proud of
+
+**Policies as YAML, not code.** Security rules should be readable by humans who aren't digging through middleware. If a PM can understand a feature flag, they should be able to understand a policy file.
+
+**Attack simulation built in.** Eleven preset malicious prompts — exfiltration attempts, destructive commands, SQL dumps — so you can *show* the system working, not just claim it works.
+
+**Offline-first demo mode.** Keyword-based agent fallback means CI and conference demos don't depend on API keys. Optional OpenAI mode when you want real LLM-proposed tool calls.
+
+**Audit dashboard.** Decisions without logs are vibes. Every allow/block/approval is persisted so you can review what the agent tried to do — and explain it to someone who wasn't watching the terminal.
+
+## What I learned
+
+Building MCPGuard reinforced a pattern I keep seeing in AI engineering:
+
+> The best safety tools don't slow builders down. They make risky behavior **visible**.
+
+Block everything and developers bypass the system. Allow everything and you learn nothing until production breaks. The productive middle ground is **graded risk** — auto-allow low-stakes tools, block obvious abuse, pause on ambiguous high-impact actions.
+
+That's how real platforms evolve. It's also how I'd want agents to behave in software I trust.
+
+## What's next
+
+The roadmap includes deeper MCP server integration and a policy editor UI. For now, the project does what I needed it to do: **make agent security tangible**.
+
+If you're building tool-calling agents, ask yourself what happens when the model proposes the wrong call. If you don't have a good answer, you're not ready to ship — you're ready to demo.
+
+MCPGuard is my answer. Yours might look different. But the question isn't optional anymore.

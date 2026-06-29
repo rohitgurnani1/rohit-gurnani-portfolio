@@ -1,0 +1,91 @@
+---
+title: "How I Use Cursor and Local Models Without Overcomplicating It"
+description: "A practical split: cloud AI for shipping, local models for experiments — and why that workflow fits a 24GB MacBook Air perfectly."
+date: "2026-04-22"
+category: "Developer Tools"
+tags: ["Cursor", "Local AI", "Workflow", "Ollama"]
+published: true
+---
+
+People ask how I work as an AI-focused developer. The honest answer is less glamorous than a Twitter thread about autonomous agents:
+
+- **Cursor** for most day-to-day coding
+- **Cloud models** when I need speed and quality
+- **Local models** when I want privacy, offline access, or to understand behavior at the metal
+- A **MacBook Air** that doesn't punish me for that split
+
+No elaborate toolchain. No twelve MCP servers running before breakfast. Just a workflow that matches how I actually ship.
+
+## Cursor is my default — and that's fine
+
+Cursor is where I live for:
+
+- Scaffolding Next.js and FastAPI projects
+- Refactoring messy code I wrote at midnight
+- Writing tests I should have written first
+- Exploring unfamiliar repos with `@codebase` context
+
+The AI runs remotely. My machine's job is to keep the editor fast, index the project, and stay out of the way. On a **24GB M5 MacBook Air**, that's effortless — TypeScript language servers, Docker, Chrome, and Cursor all coexist without the swap death spiral you get on tighter configs.
+
+There's a cultural pressure to run everything locally in 2026. I push back on that for **production work**. Cloud models are faster, smarter, and maintained by teams whose full-time job is staying current. Cursor is excellent at routing that power into your editor.
+
+Use the best tool for shipping. Don't let ideology slow you down.
+
+## When I reach for local models instead
+
+Local inference earns its place in narrower scenarios:
+
+**Privacy.** Code, documents, or prompts I don't want to leave the machine.
+
+**Offline.** Planes, unreliable campus Wi‑Fi, or demos where API keys aren't configured.
+
+**Learning.** If you're building agent security tools like **PromptGuard** or **MCPGuard**, you should feel quantization, context limits, and latency yourself — not just read about them.
+
+**Cost control.** Experimentation loops — prompt tuning, eval harnesses, batch tests — can burn tokens fast. A 7B–14B model on Ollama is often enough to iterate.
+
+On Apple Silicon, **MLX-backed runners** and Ollama generally outperform generic setups. I keep one or two models installed, not a zoo. Downloading a 20GB checkpoint on hotel Wi‑Fi once taught me to be selective.
+
+## My simple rules of thumb
+
+**Rule 1: Cloud for architecture. Local for intuition.**
+
+Designing a system, reviewing a PR, writing docs — cloud. Understanding why a 14B model fails a jailbreak test — local.
+
+**Rule 2: Match model size to RAM.**
+
+On 24GB unified memory, I treat ~two-thirds of RAM as the practical ceiling for a loaded model once macOS, the editor, and browser take their cut. That means 9B–14B quantized models are comfortable; 27B is possible with tight context and patience; 70B is someone else's problem.
+
+**Rule 3: Burst, don't marathon, on a fanless Mac.**
+
+Interactive sessions — great. Hours of sustained inference — I'll use the cloud or accept throttling. The Air is a daily driver, not a training cluster.
+
+**Rule 4: Cursor + local models are complementary, not competing.**
+
+Cursor doesn't replace Ollama. Ollama doesn't replace Cursor. Trying to force one tool to do both jobs usually means doing neither well.
+
+## What this looks like on a real project
+
+When I built MCPGuard, Cursor helped me move fast on the React dashboard and FastAPI routes. Local models helped me prototype agent behavior and test policy responses without sending adversarial prompts to a paid API on every iteration.
+
+When I write blog posts or tune resume copy, Cursor handles structure and edits. Local models sometimes help me brainstorm offline on a flight.
+
+The workflow isn't unified branding. It's **pragmatic layering**.
+
+## The setup I'd recommend
+
+If you're a developer entering this space in 2026:
+
+1. **Start with Cursor** (or your preferred cloud-assisted editor)
+2. **Add Ollama** when you hit a reason — privacy, offline, cost, curiosity
+3. **Buy RAM before ego** — 24GB on an Air is the quiet sweet spot for this split
+4. **Don't optimize prematurely** — one good cloud workflow beats a fragile local stack you maintain instead of shipping
+
+## Closing thought
+
+The best AI dev setup isn't the one that runs the biggest model. It's the one you'll actually use every day — on the couch, in a lecture hall, at a desk, on a plane.
+
+For me, that's a light MacBook Air, Cursor for velocity, and local models for the moments cloud tools can't or shouldn't reach.
+
+Simple. Portable. Enough power to build real things.
+
+That's the whole philosophy.
