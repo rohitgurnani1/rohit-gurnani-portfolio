@@ -1,0 +1,106 @@
+---
+title: "Experimenting with WWDC 2026 Dev Docs — App Intents, Siri, and the Context Layer"
+description: "What I learned digging into Apple's new developer documentation for App Intents, App Schemas, and Siri AI — and why third-party apps are about to feel very different."
+date: "2026-06-28"
+category: "Apple Platforms"
+tags: ["WWDC", "App Intents", "Siri", "Apple Intelligence", "iOS"]
+published: true
+---
+
+WWDC 2026 didn't just update iOS and macOS — it reframed how Apple expects apps to talk to the system. I've been spending evenings with the new [App Intents documentation](https://developer.apple.com/documentation/appintents), the WWDC26 session videos, and sample projects — and the direction is clear: **Siri is becoming a context-aware action layer across apps**, not a voice shortcut menu.
+
+If you build on Apple platforms (or you're curious where AI-native mobile is heading), this cycle is worth paying attention to.
+
+## The shift: from SiriKit extensions to structured app actions
+
+For years, Siri integration often meant a separate SiriKit extension, domain-specific intents, and a lot of ceremony for relatively narrow use cases. Apple's [App Intents framework](https://developer.apple.com/documentation/appintents) flips the model: you describe **what your app can do** and **what data it manages** in Swift, and the compiler generates metadata the system can discover at build time.
+
+From Apple's docs:
+
+> *"With App Intents, you express your app's actions and data in a structured way that makes them discoverable by Apple Intelligence and provides deeper integration with system features people use frequently."*
+
+That "structured way" matters. Siri, Spotlight, Shortcuts, widgets, the Action button, and Focus modes aren't separate integrations anymore — they're **surfaces on the same App Intents foundation**.
+
+WWDC 2026 pushed this further. Sessions like [Build intelligent Siri experiences with App Schemas](https://developer.apple.com/videos/play/wwdc2026/240/) and the [Make your app available to Siri code-along](https://developer.apple.com/videos/play/wwdc2026/344/) walk through a new mental model: your app exposes **entities** (the things it knows about) and **intents** (the actions it can perform), and Siri routes natural language to those capabilities.
+
+If you're still on SiriKit-only integrations, Apple's developer forums are blunt: Siri AI remains backward compatible with many SiriKit intents, but **you miss the new features** unless you adopt App Intent Schemas. The best path is dual support during transition — keep SiriKit for older devices, add App Intents for the new experience.
+
+## App Schemas: teaching Siri your app's language
+
+The most interesting WWDC 2026 addition, in my view, is **App Schemas** — predefined domains (calendar, messages, photos, and more) that map your app's functionality to actions Siri already understands.
+
+Instead of training custom phrases from scratch, you conform to schema snippets. Apple's calendar code-along demo shows the pattern: scaffold an intent with the `@AppIntent` macro, adopt the schema parameters, implement `perform()`, and Siri suddenly knows how to **create events**, **open entities**, and **reason about your content** in domain-native language.
+
+That's a big deal for third-party developers. You're not bolting voice onto your app — you're **registering your app in a shared action vocabulary** the system can compose across apps.
+
+## Context is the product now
+
+The old Siri experience often felt like: ask a question → get a card → done.
+
+The 2026 documentation points somewhere richer:
+
+- **On-screen awareness** — modifiers like `.appEntityIdentifier` and `.userActivity` help Siri resolve "this" and "that" against what's visible
+- **Semantic indexing** — entities conforming to `IndexedEntity` show up in Spotlight with meaning, not just keywords
+- **Cross-app content transfer** — exporting entities via `Transferable` and `IntentValueRepresentation` lets Siri hand off context between apps ("call this contact," "add this to my calendar") without every app reimplementing glue code
+
+Apple describes this as content transfer: your app doesn't need to know what happens next — it needs to **describe its content accurately**. Siri and Apple Intelligence handle orchestration.
+
+That's the evolution I find most compelling. We're moving from **app silos with voice triggers** to **a system that understands entities and routes actions across them**. Third-party apps stop being islands and start being nodes in a personal workflow graph.
+
+## One definition, many surfaces
+
+What kept clicking as I read the docs: App Intents isn't "the Siri API." It's the **integration layer for Apple Intelligence across the OS**.
+
+The same intent might be invoked by:
+
+- Siri in a multi-turn conversation
+- Spotlight search
+- A Shortcuts automation
+- A widget or Live Activity
+- The Action button on iPhone
+- A Focus mode change
+
+You implement once. The system exposes everywhere.
+
+For indie developers and small teams, that's leverage. You're not maintaining six integrations — you're modeling your app's core verbs and nouns honestly, then letting the OS distribute them.
+
+## What I tried in practice
+
+I'm not shipping an App Store hit from these experiments yet — this is exploratory work between grad school and AI security projects. But the workflow I followed matches Apple's recommended path:
+
+1. Read [Getting started with App Intents](https://developer.apple.com/documentation/appintents/getting-started-with-the-app-intents-framework)
+2. Watch the WWDC26 **App Schemas** session for the conceptual map
+3. Follow the **code-along** to wire entities, indexing, and a create-action intent
+4. Skim the new **AppIntentsTesting** docs — validation without brittle UI automation is overdue
+
+The documentation quality feels noticeably better this year. Less archaeology through stale forum threads, more end-to-end paths from "here's the concept" to "here's the Swift."
+
+## Where I think this goes
+
+Short term, the winners will be apps that expose **high-value, schema-aligned actions** early — the ones Siri can actually invoke when users ask naturally. Apple has reportedly lined up launch partners across ride-sharing, messaging, and media; the long tail of third-party apps will determine whether the new Siri feels magical or hollow.
+
+Medium term, I expect **context stitching** to matter more than raw model size. The assistant that knows what's on your screen, what your calendar holds, and what your task app tracks — then acts across all three — wins on utility, not hype.
+
+Long term, this looks like the mobile equivalent of what MCP is doing for agents on the desktop: **structured capabilities + shared context + policy boundaries**. I'm building MCPGuard for the agent tool-call layer; Apple's betting App Intents becomes the same layer for the personal OS.
+
+Different stacks. Same architectural instinct.
+
+## Honest caveats
+
+A few realities kept me grounded while reading the docs:
+
+- **Adoption is a chicken-and-egg problem.** Siri only feels smart if enough apps expose intents; developers only invest if users engage. WWDC 2026 is Apple's push to break that loop.
+- **Migration takes real work.** Moving from SiriKit to App Intents isn't a weekend rename — entity modeling, schema conformance, and testing add up.
+- **Regional rollout varies.** Developer APIs and consumer-facing Siri AI features won't land uniformly everywhere on day one — check Apple's platform availability notes for your target markets.
+
+None of that diminishes the direction. It just means early movers who understand the docs will have a head start.
+
+## Why this matters to me
+
+I come from backend and AI engineering — Nordstrom microservices, grad school AI, tools like PromptGuard and MCPGuard. Apple platform work is a side passion, but WWDC 2026 made it feel less like a hobby and more like **systems design with consumer reach**.
+
+If you're an AI engineer wondering whether to care about iOS: yes. Not because every model runs on-device, but because **the action surface is being rebuilt**. The apps that describe their capabilities clearly — to Siri, to Spotlight, to Apple Intelligence — will sit closer to the user than apps that don't.
+
+I'm going to keep experimenting. Next up: indexing entities properly, testing cross-app transfers, and seeing how far I can push a small SwiftUI side project into Shortcuts and Siri without turning it into a science fair booth.
+
+If you're digging into the same docs, [start with App Intents](https://developer.apple.com/documentation/appintents) and the two WWDC26 Siri sessions. The platform is telling you what it wants. This year, it's worth listening.
