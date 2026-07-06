@@ -1,0 +1,152 @@
+---
+title: "What I Looked for as a tamuHACK Judge (Spring 2026)"
+description: "Virtual judging at Texas A&M's tamuHACK — the technical questions I asked, the patterns I saw in student projects, and why helping fellow Aggies build was the best part."
+date: "2026-03-22"
+category: "Career"
+tags: ["Hackathon", "Texas A&M", "Mentorship", "AI"]
+published: true
+---
+
+This spring I judged **tamuHACK** at Texas A&M — virtually, over Zoom, because weather made an in-person event impossible. I expected a compromised experience. Instead, I got one of the most energizing evenings I've had since starting my MCS program.
+
+Not because every project was polished. They weren't. But because **students showed up with real ideas, working demos, and genuine openness to feedback** — and that's rarer than people think.
+
+Here's what judging actually looked like, what I cared about as an engineer, and why I'd do it again in a heartbeat.
+
+## Virtual judging is awkward — and still works
+
+I'll be honest: judging hackathon projects over Zoom is not ideal. You lose the hallway energy, the whiteboard sketches, the spontaneous "wait, let me show you this" moments.
+
+What you keep:
+
+- Live demos (screen share)
+- Direct Q&A with the team
+- The ability to press on architecture, not just pitch decks
+
+Weather forced tamuHACK online. The teams adapted. So did the judges. And the format still surfaced who had **actually built something** versus who had rehearsed a slide deck.
+
+That distinction showed up fast.
+
+## My job wasn't to be nice — it was to be useful
+
+There's a version of hackathon judging that's performative: vague praise, generic "great job," move on. That's a waste of everyone's 36 hours.
+
+I tried to give feedback the way I'd want it on a code review:
+
+- **Specific** — point to what worked and what didn't
+- **Actionable** — "here's what I'd fix before showing this to a recruiter"
+- **Honest** — if the demo broke under a basic question, say so kindly but clearly
+
+Most teams didn't need cheerleading. They needed a senior engineer to ask the questions their friends wouldn't.
+
+## What I actually looked for
+
+I wasn't scoring on slide design or how many buzzwords fit on the poster. I cared about:
+
+### 1. Does the demo survive contact with reality?
+
+The number one filter: **can you show it working, live, right now?**
+
+Projects that impressed me had teams who could navigate their own app without praying. Projects that struggled often had:
+
+- Pre-recorded videos instead of live demos
+- "It works on my machine" energy when something failed mid-pitch
+- Features that existed in the README but not in the build
+
+If you can't demo it, you didn't finish it. Harsh, but true in a 24–48 hour sprint.
+
+### 2. Is there a real problem — or just an API wrapper?
+
+Spring 2026 meant a lot of AI projects. Some were thoughtful. Many were:
+
+> ChatGPT + a text box + a logo
+
+The better teams could answer:
+
+- **Who is this for?**
+- **What happens when the model is wrong?**
+- **Why is your app better than opening ChatGPT in a tab?**
+
+If the only moat is "we built a UI," that's a weekend project, not a product. The teams that stood out had **domain specificity** — campus workflows, accessibility tools, data viz for a real dataset, hardware integrations. They built for someone.
+
+### 3. Can you explain your architecture in 60 seconds?
+
+I asked a lot of:
+
+- "Walk me through what happens when a user submits this."
+- "Where does the data go?"
+- "What fails first if your API key expires?"
+- "Did you write the core logic, or did you paste it from a tutorial?"
+
+Not to gatekeep. To see if the team **owned** what they built.
+
+The best answers were messy but honest: "We hacked this together with Firebase and a Python script, and here's the one part we're proud of." I'd take that over a polished lie every time.
+
+### 4. Security and AI — even at a hackathon
+
+Given what I work on ([PromptGuard](https://github.com/rohitgurnani1/promptguard), [MCPGuard](https://github.com/rohitgurnani1/mcpguard)), I couldn't help but ask AI teams:
+
+- Are you sending user data to a third-party API without disclosure?
+- What stops someone from prompt-injecting your chatbot?
+- Is there any auth, or is this wide open?
+
+Most student projects didn't have answers — and that's fine for a hackathon. But the teams who'd **thought about it for five minutes** immediately stood out. It signals engineering maturity beyond the sprint.
+
+## Patterns I saw (the good and the rough)
+
+**What worked:**
+
+- **Small scope, finished well** — one feature that works beats five that don't
+- **Teams that split roles clearly** — frontend, backend, demo person who actually practiced
+- **Projects grounded in campus life** — problems Aggies actually have
+- **Teams that recovered live** — demo broke, they debugged on screen, kept going
+
+**What didn't:**
+
+- Over-scoped AI agents that couldn't do one thing reliably
+- Mobile apps with beautiful Figma mockups and no working build
+- Teams where one person did everything and couldn't explain the backend
+- Pitch decks longer than the demo
+
+None of this is unique to tamuHACK. It's every hackathon. But seeing it from the judge's side reframed how I think about my own side projects.
+
+## The questions I kept coming back to
+
+If you're building for a hackathon — or judging one — these were my go-to prompts:
+
+1. **"Show me the happiest path, live."**
+2. **"What's the hackiest part of this codebase?"** (Good teams laugh and point at it honestly.)
+3. **"If you had one more day, what would you fix first?"**
+4. **"Who would actually use this on Monday?"**
+5. **"What did you learn that you didn't expect?"**
+
+That last question often got the best answers. Hackathons aren't really about winning. They're about **compressing learning** — and the teams who could articulate what they learned were usually the ones who grew the most over the weekend.
+
+## Why helping fellow Aggies meant a lot to me
+
+I'm pursuing my MCS at Texas A&M after years in industry at Nordstrom. I know what it's like to stare at a blank repo at 2 a.m. wondering if your idea is stupid.
+
+Judging tamuHACK wasn't about being the expert in the room. It was about **being the person who'd been there** — who'd shipped under pressure, sat through bad demos, and still cared about the craft.
+
+The Aggie engineering community is serious. Students here build hard things. Getting to give back — even through a Zoom window during bad weather — felt like the right kind of full circle.
+
+I didn't walk away thinking "these kids need to try harder." I walked away thinking **the future of software here is in good hands** — especially if they keep finishing demos, narrowing scope, and asking harder questions of their own AI features.
+
+## If you're judging a hackathon someday
+
+A few things I'd carry forward:
+
+- **Ask technical questions, not trivia.** Nobody cares if they memorized Big-O. Care if they understand their data flow.
+- **Reward honesty over polish.** A team that admits what's broken earns more respect than one bluffing through a crash.
+- **Give one concrete next step.** "Fix auth." "Add error handling." "Write a one-paragraph README for recruiters." One thing they can do tomorrow.
+- **Remember why they showed up.** They're tired, caffeinated, and proud. Your feedback can stick for years.
+
+## Final thought
+
+tamuHACK Spring 2026 wasn't perfect — virtual judging never is. But it reminded me why I like this field: **people building things together, learning fast, and caring enough to show their work to strangers.**
+
+If you competed this year — thanks for putting yourselves out there. If you're building for the next one — finish the demo, shrink the scope, and be ready to explain what breaks.
+
+And if you're an engineer with a few hours to spare: volunteer as a judge. Fellow Aggies — and hackers everywhere — need more feedback that sounds like a code review, not a trophy ceremony.
+
+Gig 'em.
