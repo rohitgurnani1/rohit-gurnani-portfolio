@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export function Timeline() {
   return (
-    <section id="timeline" className="py-20 md:py-28">
+    <section id="timeline" className="section-divider py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="Timeline"
@@ -82,7 +82,7 @@ function TimelineCard({
   return (
     <div
       className={cn(
-        "rounded-3xl border border-border bg-background/70 p-6 transition-shadow hover:shadow-lg hover:shadow-black/5",
+        "surface-panel rounded-2xl p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-hover)]",
         align === "right" && "md:ml-auto md:text-right",
       )}
     >

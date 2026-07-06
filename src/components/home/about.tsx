@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site";
 
 export function About() {
   return (
-    <section id="about" className="py-20 md:py-28">
+    <section id="about" className="section-divider py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="About"
@@ -24,8 +24,8 @@ export function About() {
           </div>
 
           <FadeIn delay={0.1}>
-            <div className="glass rounded-3xl p-6 md:p-8">
-              <h3 className="text-sm font-medium tracking-wide text-accent uppercase">
+            <div className="surface-panel rounded-2xl p-6 md:p-8">
+              <h3 className="text-xs font-semibold tracking-[0.08em] text-muted uppercase">
                 Currently
               </h3>
               <p className="mt-4 text-lg font-medium text-foreground">

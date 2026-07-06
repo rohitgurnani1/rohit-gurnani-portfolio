@@ -1,27 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
-  --muted: #737373;
-  --border: rgba(0, 0, 0, 0.08);
-  --card: rgba(255, 255, 255, 0.72);
+  --background: #fbfbfd;
+  --foreground: #1d1d1f;
+  --muted: #6e6e73;
+  --border: rgba(0, 0, 0, 0.06);
+  --card: rgba(255, 255, 255, 0.8);
+  --surface: #ffffff;
+  --surface-alt: #f5f5f7;
   --accent: #0071e3;
-  --accent-soft: rgba(0, 113, 227, 0.12);
-  --gradient-start: #f5f5f7;
-  --gradient-end: #ffffff;
+  --accent-hover: #0077ed;
+  --accent-soft: rgba(0, 113, 227, 0.1);
+  --gradient-start: #fbfbfd;
+  --gradient-end: #f5f5f7;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
   --background: #000000;
   --foreground: #f5f5f7;
-  --muted: #a1a1aa;
-  --border: rgba(255, 255, 255, 0.1);
-  --card: rgba(24, 24, 27, 0.72);
+  --muted: #a1a1a6;
+  --border: rgba(255, 255, 255, 0.08);
+  --card: rgba(29, 29, 31, 0.72);
+  --surface: #1d1d1f;
+  --surface-alt: #000000;
   --accent: #2997ff;
-  --accent-soft: rgba(41, 151, 255, 0.14);
-  --gradient-start: #09090b;
-  --gradient-end: #000000;
+  --accent-hover: #40a9ff;
+  --accent-soft: rgba(41, 151, 255, 0.12);
+  --gradient-start: #000000;
+  --gradient-end: #1d1d1f;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.55);
 }
 
 @theme inline {
@@ -30,6 +40,8 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
@@ -47,9 +59,18 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family:
+    var(--font-geist-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    system-ui,
+    sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
 }
 
 ::selection {
@@ -58,20 +79,55 @@ body {
 }
 
 .gradient-bg {
-  background:
-    radial-gradient(
-      ellipse 80% 50% at 50% -20%,
-      var(--accent-soft),
-      transparent
-    ),
-    linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(
+    180deg,
+    var(--gradient-start) 0%,
+    var(--background) 100%
+  );
 }
 
 .glass {
   background: var(--card);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--border);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.surface-panel {
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-alt {
+  background: var(--surface-alt);
+}
+
+.section-divider {
+  border-top: 1px solid var(--border);
+}
+
+.hero-display {
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.hero-subhead {
+  letter-spacing: -0.022em;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.link-apple {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.link-apple:hover {
+  color: var(--accent-hover);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 .prose {
@@ -82,10 +138,11 @@ body {
 .prose h1,
 .prose h2,
 .prose h3 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  color: var(--foreground);
 }
 
 .prose h1 {
@@ -107,6 +164,10 @@ body {
 
 .prose a {
   color: var(--accent);
+  text-decoration: none;
+}
+
+.prose a:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -123,7 +184,7 @@ body {
 }
 
 .prose code {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.875em;
   background: var(--accent-soft);
   padding: 0.15em 0.4em;
@@ -132,9 +193,9 @@ body {
 
 .prose pre {
   overflow-x: auto;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 1.25rem;
 }

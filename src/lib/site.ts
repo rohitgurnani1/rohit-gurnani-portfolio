@@ -11,6 +11,7 @@ export const siteConfig = {
   github: "https://github.com/rohitgurnani1",
   linkedin: "https://www.linkedin.com/in/rohitgurnani/",
   location: "College Station, Texas",
+  now: "MCS @ Texas A&M · Former Engineer 2 @ Nordstrom · Building AI security tools",
   headline: [
     "AI Engineer.",
     "Software Developer.",

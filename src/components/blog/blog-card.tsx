@@ -9,7 +9,7 @@ type BlogCardProps = {
 
 export function BlogCard({ post }: BlogCardProps) {
   return (
-    <article className="group flex h-full flex-col rounded-3xl border border-border bg-background/70 p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5">
+    <article className="group surface-panel flex h-full flex-col rounded-2xl p-6 transition-shadow duration-300 hover:shadow-[var(--shadow-hover)] md:p-7">
       <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
         <time dateTime={post.date}>{formatDate(post.date)}</time>
         <span aria-hidden>·</span>

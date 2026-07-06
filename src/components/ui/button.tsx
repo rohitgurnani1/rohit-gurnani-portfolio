@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
@@ -19,16 +18,16 @@ type ButtonProps = {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-foreground text-background hover:opacity-90 shadow-sm shadow-black/5",
+    "bg-accent text-white hover:bg-[var(--accent-hover)] shadow-sm shadow-black/5",
   secondary:
-    "border border-border bg-background/60 text-foreground hover:bg-accent-soft",
-  ghost: "text-foreground hover:bg-accent-soft",
+    "bg-accent/10 text-accent hover:bg-accent/15 dark:bg-accent/15 dark:hover:bg-accent/20",
+  ghost: "text-accent hover:opacity-80 px-2",
 };
 
 const sizes: Record<ButtonSize, string> = {
   sm: "h-9 px-4 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-base",
+  md: "h-10 px-5 text-sm",
+  lg: "h-11 px-6 text-[15px]",
 };
 
 export function Button({
@@ -42,7 +41,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
     variants[variant],
     sizes[size],
     className,
@@ -50,25 +49,19 @@ export function Button({
 
   if (href) {
     return (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Link
-          href={href}
-          className={classes}
-          {...(external
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
-        >
-          {children}
-        </Link>
-      </motion.div>
+      <Link
+        href={href}
+        className={classes}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {children}
+      </Link>
     );
   }
 
   return (
-    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-      <button type={type} className={classes} {...props}>
-        {children}
-      </button>
-    </motion.div>
+    <button type={type} className={classes} {...props}>
+      {children}
+    </button>
   );
 }

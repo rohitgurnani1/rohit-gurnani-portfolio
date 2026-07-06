@@ -10,24 +10,36 @@ import { cn } from "@/lib/utils";
 type ProjectCardProps = {
   project: Project;
   className?: string;
+  variant?: "default" | "compact";
 };
 
-export function ProjectCard({ project, className }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  className,
+  variant = "default",
+}: ProjectCardProps) {
+  const compact = variant === "compact";
+
   return (
     <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background/70 transition-shadow hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20",
+        "group surface-panel flex h-full flex-col overflow-hidden rounded-2xl transition-shadow duration-300 hover:shadow-[var(--shadow-hover)]",
         className,
       )}
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-accent-soft">
+      <div
+        className={cn(
+          "relative overflow-hidden bg-surface-alt",
+          compact ? "aspect-[16/8]" : "aspect-[16/10]",
+        )}
+      >
         <Image
           src={project.image}
           alt=""
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         {project.comingSoon && (
@@ -37,31 +49,50 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-semibold tracking-tight text-foreground">
+      <div
+        className={cn(
+          "flex flex-1 flex-col",
+          compact ? "p-5" : "p-7 md:p-8",
+        )}
+      >
+        <h3
+          className={cn(
+            "font-semibold tracking-tight text-foreground",
+            compact ? "text-lg" : "text-xl md:text-2xl",
+          )}
+        >
           {project.title}
         </h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
+        <p
+          className={cn(
+            "mt-2 flex-1 leading-relaxed text-muted",
+            compact
+              ? "line-clamp-3 text-sm"
+              : "mt-3 text-[15px] md:text-base",
+          )}
+        >
           {project.description}
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.techStack.map((tech) => (
-            <Badge key={tech} variant="outline">
-              {tech}
-            </Badge>
-          ))}
+        <div className={cn("flex flex-wrap gap-2", compact ? "mt-4" : "mt-5")}>
+          {(compact ? project.techStack.slice(0, 4) : project.techStack).map(
+            (tech) => (
+              <Badge key={tech} variant="outline">
+                {tech}
+              </Badge>
+            ),
+          )}
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className={cn("flex flex-wrap gap-4", compact ? "mt-4" : "mt-6")}>
           {project.githubUrl && (
             <Link
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-accent hover:underline"
+              className="link-apple text-[15px] font-medium"
             >
-              GitHub
+              GitHub →
             </Link>
           )}
           {project.liveUrl && (
@@ -69,9 +100,9 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-accent hover:underline"
+              className="link-apple text-[15px] font-medium"
             >
-              Live Demo
+              Live Demo →
             </Link>
           )}
         </div>

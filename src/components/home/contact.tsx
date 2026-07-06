@@ -9,7 +9,7 @@ import { siteConfig, socialLinks } from "@/lib/site";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28">
+    <section id="contact" className="section-alt section-divider py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="Contact"
@@ -19,10 +19,7 @@ export function Contact() {
         />
 
         <FadeIn className="mx-auto mt-10 max-w-2xl text-center">
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="glass rounded-3xl p-8 md:p-10"
-          >
+          <motion.div className="surface-panel mx-auto max-w-2xl rounded-2xl p-8 md:p-10">
             <p className="text-lg text-muted">
               The fastest way to reach me is by email. I try to respond within a
               couple of days.

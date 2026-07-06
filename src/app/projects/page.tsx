@@ -24,7 +24,7 @@ export default function ProjectsPage() {
         description="A collection of products, experiments, and tools built with attention to detail."
       />
 
-      <StaggerContainer className="grid gap-6 md:grid-cols-2">
+        <StaggerContainer className="grid gap-5 sm:grid-cols-2 sm:gap-6">
         {projects.map((project) => (
           <StaggerItem key={project.slug}>
             <ProjectCard project={project} />

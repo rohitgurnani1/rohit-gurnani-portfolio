@@ -39,13 +39,6 @@ export default function ResumePage() {
           >
             {resumeContact.email}
           </a>
-          {" · "}
-          <a
-            href={`tel:${resumeContact.phone.replace(/\D/g, "")}`}
-            className="text-accent hover:underline"
-          >
-            {resumeContact.phone}
-          </a>
         </p>
       </FadeIn>
 

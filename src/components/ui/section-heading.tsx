@@ -17,7 +17,7 @@ export function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   return (
-    <FadeIn className={cn("mb-12 md:mb-16", className)}>
+    <FadeIn className={cn("mb-14 md:mb-16", className)}>
       <div
         className={cn(
           "max-w-2xl",
@@ -25,15 +25,15 @@ export function SectionHeading({
         )}
       >
         {eyebrow && (
-          <p className="mb-3 text-sm font-medium tracking-wide text-accent uppercase">
+          <p className="mb-3 text-xs font-semibold tracking-[0.08em] text-muted uppercase">
             {eyebrow}
           </p>
         )}
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+        <h2 className="hero-display text-3xl text-foreground md:text-4xl lg:text-5xl">
           {title}
         </h2>
         {description && (
-          <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
+          <p className="mt-5 text-lg leading-relaxed text-muted md:text-xl">
             {description}
           </p>
         )}

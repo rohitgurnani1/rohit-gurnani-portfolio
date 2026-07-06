@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-full antialiased`}
       >
         <ThemeProvider>
-          <div className="gradient-bg flex min-h-full flex-col">
+          <div className="gradient-bg flex min-h-full flex-col pt-0">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

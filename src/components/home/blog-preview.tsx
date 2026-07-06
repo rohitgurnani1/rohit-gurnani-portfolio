@@ -9,7 +9,7 @@ export function BlogPreview() {
   const posts = getAllBlogPosts().slice(0, 3);
 
   return (
-    <section id="blog" className="py-20 md:py-28">
+    <section id="blog" className="section-divider py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading

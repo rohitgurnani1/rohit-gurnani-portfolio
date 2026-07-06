@@ -8,7 +8,7 @@ import { skillCategories } from "@/lib/skills";
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 md:py-28">
+    <section id="skills" className="section-alt section-divider py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="Skills"
@@ -19,8 +19,8 @@ export function Skills() {
         <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category) => (
             <StaggerItem key={category.name}>
-              <div className="h-full rounded-3xl border border-border bg-background/70 p-6">
-                <h3 className="text-sm font-medium tracking-wide text-accent uppercase">
+              <div className="surface-panel h-full rounded-2xl p-6">
+                <h3 className="text-xs font-semibold tracking-[0.08em] text-muted uppercase">
                   {category.name}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
