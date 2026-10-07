@@ -11,7 +11,6 @@ export const projects: Project[] = [
     image: "/projects/promptguard.svg",
     techStack: ["Python", "LLMs", "Prompt Injection", "Evaluation", "OpenAI"],
     githubUrl: "https://github.com/rohitgurnani1/promptguard",
-    liveUrl: "https://promptguard.dev",
     featured: true,
   },
   {
